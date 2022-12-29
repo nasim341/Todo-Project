@@ -40,3 +40,18 @@ exports.SelectProfile = async(req, res) => {
         }
     })
 }
+
+exports.UdateProfile = async(req, res) => {
+    let UserName = req.headers['username']
+    let reqBody = req.body;
+
+    profileModel.updateOne({ UserName: UserName }, { $set: reqBody }, { upsert: true }, (err, data) => {
+        if (err) {
+            res.status(400).json({ status: "fail", data: err })
+        } else {
+            res.status(200).json({ status: "success", data: data })
+        }
+    })
+
+
+}
