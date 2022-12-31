@@ -19,7 +19,7 @@ exports.UserLogin = async(req, res) => {
         } else if (data.length == 1) {
             // create auth token
             let payload = {
-                exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60),
+                exp: Math.floor(Date.now() / 1000) + (30 * 24 * 60 * 60),
                 data: data[0]
             }
             let token = jwt.sign(payload, 'secretkey123');
